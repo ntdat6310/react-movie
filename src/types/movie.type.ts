@@ -19,20 +19,9 @@ export type Movie = {
   vote_count: number
 }
 
-export type MovieDetail = {
-  id: number
-  adult: boolean
-  backdrop_path: string
+export type MovieDetail = Movie & {
   genres: Genre[]
-  original_title: string
-  title: string
-  overview: string
   popularity: number
-  poster_path: string
-  release_date: string
   revenue: number
   status: string
-  video: boolean
-  vote_average: number
-  vote_count: number
 }

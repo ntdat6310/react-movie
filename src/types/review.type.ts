@@ -7,3 +7,7 @@ export type Review = {
   created_at: string
   updated_at: string
 }
+
+export type Reviews = {
+  results: Review[]
+}
