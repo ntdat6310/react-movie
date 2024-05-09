@@ -5,10 +5,12 @@ import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import MovieCard from './components/MovieCard'
+import { Movie } from '../../types/movie.type'
 interface Props {
   title?: string
+  movies?: Movie[]
 }
-export default function MovieList({ title }: Props) {
+export default function MovieList({ title, movies }: Props) {
   return (
     <div className='relative movies-list'>
       {title && <h2 className='text-2xl text-white font-bold mt-5'>{title}</h2>}
