@@ -5,7 +5,7 @@ import http from '../utils/http'
 const URL = '/movie'
 const movieApi = {
   getMovies({ movie_type, params }: { movie_type: MovieType; params?: string }) {
-    return http.get<Movie[]>(`${URL}/${movie_type}`, { params: params })
+    return http.get<{ results: Movie[] }>(`${URL}/${movie_type}`, { params: params })
   },
 
   getMovieDetail(movieId: string | number) {

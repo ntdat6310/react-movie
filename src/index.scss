@@ -37,10 +37,24 @@
   }
 }
 
+.swiper {
+  .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+    .swiper-slide {
+      height: auto;
+    }
+  }
+}
+
 .banner {
-  background-color: transparent !important;
   .swiper {
-    width: 100%;
-    height: 100%;
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #f62682;
+      &::after {
+        font-weight: bold;
+      }
+    }
   }
 }
