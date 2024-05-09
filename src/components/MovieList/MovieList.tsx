@@ -1,12 +1,12 @@
 /* eslint-disable import/no-unresolved */
-// import Swiper core and required modules
-import 'swiper/css'
-import 'swiper/css/navigation'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import MovieCard from './components/MovieCard'
-import { Movie } from '../../types/movie.type'
-import MovieSkeleton from './components/MovieSkeleton'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import { Movie } from 'src/types/movie.type'
+import MovieSkeleton from 'src/components/MovieSkeleton'
+import MovieCard from 'src/components/MovieCard'
+
 interface Props {
   title?: string
   movies?: Movie[]

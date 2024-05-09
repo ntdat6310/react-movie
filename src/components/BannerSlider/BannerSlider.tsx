@@ -1,10 +1,10 @@
 /* eslint-disable import/no-unresolved */
+import { Movie } from 'src/types/movie.type'
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import Banner from './components/Banner'
-import { Movie } from 'src/types/movie.type'
 
 interface Props {
   movies?: Movie[]

@@ -1,9 +1,9 @@
-import { config } from '../../../../constants/config'
-import { Movie } from '../../../../types/movie.type'
-import { getYearFromISOString } from '../../../../utils/helpers'
-import Button from '../../../Button'
-import IconPlay from '../../../IconPlay'
-import IconStar from '../../../IconStar'
+import { Movie } from 'src/types/movie.type'
+import { getYearFromISOString } from '../../utils/helpers'
+import { config } from 'src/constants/config'
+import IconStar from '../IconStar'
+import Button from '../Button'
+import IconPlay from '../IconPlay'
 interface Props {
   movie: Movie
 }
