@@ -17,7 +17,8 @@
 }
 
 .movies-list,
-.cast-list {
+.cast-list,
+.trailer {
   .swiper {
     // Swiper Navigation
     position: unset;
@@ -56,6 +57,18 @@
       &::after {
         font-weight: bold;
       }
+    }
+  }
+}
+
+.trailer {
+  .swiper {
+    width: 100%;
+    height: 100%;
+
+    iframe {
+      width: 100%;
+      height: 100%;
     }
   }
 }

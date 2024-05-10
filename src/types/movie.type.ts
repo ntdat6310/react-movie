@@ -26,18 +26,12 @@ export type MovieDetail = Movie & {
   status: string
 }
 
-// type CastsOfMovie = {}
-const castsOfMovie = {
-  adult: false,
-  gender: 2,
-  id: 287,
-  known_for_department: 'Acting',
-  name: 'Brad Pitt',
-  original_name: 'Brad Pitt',
-  popularity: 45.202,
-  profile_path: '/huV2cdcolEUwJy37QvH914vup7d.jpg',
-  cast_id: 5,
-  character: 'Tyler Durden',
-  credit_id: '52fe4250c3a36847f80149f7',
-  order: 1
+export type Video = {
+  name: string
+  key: string
+  site: string
+  size: number
+  type: string
+  official: boolean
+  published_at: string
 }

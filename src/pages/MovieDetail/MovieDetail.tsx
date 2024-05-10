@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useQuery } from '@tanstack/react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import movieApi from 'src/apis/movie.api'
@@ -11,6 +12,9 @@ import { generateNameId, getIdFromNameId } from 'src/utils/helpers'
 import CastList from './components/CastList'
 import Genre from './components/Genre/Genre'
 import Review from './components/Review/Review'
+import Video from './components/Video/Video'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
 
 export default function MovieDetail() {
   const searchParams = useQueryParams()
@@ -26,7 +30,7 @@ export default function MovieDetail() {
     queryFn: () => movieApi.getMovieDetail(movieId)
   })
   const { data: castsData } = useQuery({
-    queryKey: ['cast', movieId],
+    queryKey: ['casts', movieId],
     queryFn: () => movieApi.getCastsOfMovie(movieId)
   })
   const { data: similarMovieData } = useQuery({
@@ -38,11 +42,13 @@ export default function MovieDetail() {
     queryFn: () => movieApi.getMovieReviews(movieId, { page })
   })
 
+  const { data: videosData } = useQuery({
+    queryKey: ['videos', movieId],
+    queryFn: () => movieApi.getMovieVideos(movieId)
+  })
+
   const onMovieClicked = ({ id, name }: { id: string; name: string }) => {
-    const nameId = generateNameId({
-      id,
-      name
-    })
+    const nameId = generateNameId({ id, name })
     navigate(`/movie/${nameId}`)
   }
 
@@ -50,6 +56,10 @@ export default function MovieDetail() {
   const casts = castsData?.data.cast
   const similarMovies = similarMovieData?.data.results
   const reviews = movieReviewsData?.data
+  const videos = videosData?.data.results
+
+  console.log(videos)
+
   return (
     <div className='w-full mt-5 mb-10 text-white'>
       <div className='relative mb-[250px]'>
@@ -84,6 +94,16 @@ export default function MovieDetail() {
           <div className='text-center'>{movie?.overview}</div>
         </div>
       </div>
+
+      <div className='page-container'>
+        <div className='mt-10 px-5'>
+          <div className='trailer max-w-[100%] md:max-w-[90%] lg:max-w-[70%] mx-auto relative aspect-video'>
+            <h2 className='mb-5 text-3xl text-center'>Trailers</h2>
+            <Video videos={videos} />
+          </div>
+        </div>
+      </div>
+
       <div className='page-container'>
         <div className='mt-10 px-5'>
           <CastList casts={casts} title='Casts' titleClassName='text-3xl text-center' />

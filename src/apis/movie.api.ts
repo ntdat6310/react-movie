@@ -1,5 +1,5 @@
 import { Actor } from 'src/types/user.type'
-import { Movie, MovieDetail, MovieType } from '../types/movie.type'
+import { Movie, MovieDetail, MovieType, Video } from '../types/movie.type'
 import http from '../utils/http'
 import { SuccessResponse } from 'src/types/response.type'
 import { Review } from 'src/types/review.type'
@@ -27,6 +27,10 @@ const movieApi = {
 
   getCastsOfMovie(movieId: string | number) {
     return http.get<{ cast: Actor[] }>(`${URL}/${movieId}/credits`)
+  },
+
+  getMovieVideos(movieId: string | number) {
+    return http.get<{ results: Video[] }>(`${URL}/${movieId}/videos`)
   }
 }
 export default movieApi
