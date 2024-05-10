@@ -1,6 +1,7 @@
 import IconStar from 'src/components/IconStar'
 import { config } from 'src/constants/config'
 import { Review as ReviewType } from 'src/types/review.type'
+import { isoToCustomDateFormat } from 'src/utils/helpers'
 
 interface Props {
   review?: ReviewType
@@ -15,11 +16,11 @@ export default function Review({ review }: Props) {
         <img className='w-10 h-10 me-4 rounded-full' src={avatar} alt='author_img' />
         <div className='font-medium dark:text-white'>
           <p>{review?.author_details.name || review?.author_details.username}</p>
-          <div className='flex items-center flex-wrap gap-x-2 text-sm text-gray-500 dark:text-gray-400'>
+          <div className='mt-1 flex items-center flex-wrap gap-x-2 text-sm text-gray-500 dark:text-gray-400'>
             <div className='flex items-center gap-x-1'>
               {review?.author_details.rating} <IconStar />
             </div>
-            <p>on March 3, 2017</p>
+            <p>on {isoToCustomDateFormat(review?.created_at || new Date().toISOString())}</p>
           </div>
         </div>
       </div>

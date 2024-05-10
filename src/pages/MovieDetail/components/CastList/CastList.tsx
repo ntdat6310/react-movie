@@ -1,24 +1,22 @@
 /* eslint-disable import/no-unresolved */
+import MovieSkeleton from 'src/components/MovieSkeleton'
 import { Actor } from 'src/types/user.type'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import CastCard from '../CastCard'
-import MovieSkeleton from 'src/components/MovieSkeleton'
 
 interface Props {
   title?: string
   titleClassName?: string
   casts?: Actor[]
   isLoading?: boolean
-  onCastClicked?: ({ id, name }: { id: string; name: string }) => void
 }
 
 export default function CastList({
   title,
   titleClassName = 'text-2xl text-white font-bold mt-5',
   casts,
-  isLoading,
-  onCastClicked
+  isLoading
 }: Props) {
   return (
     <div className='relative cast-list'>

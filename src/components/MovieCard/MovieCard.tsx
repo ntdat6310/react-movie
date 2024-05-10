@@ -10,7 +10,7 @@ interface Props {
 }
 export default function MovieCard({ movie, onMovieClicked }: Props) {
   return (
-    <div className='col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 p-3 bg-slate-800 rounded-lg text-white select-none cursor-grab h-full flex flex-col'>
+    <div className='p-3 bg-slate-800 rounded-lg text-white select-none cursor-grab h-full flex flex-col'>
       <div className='w-full h-[250px] overflow-hidden rounded-lg'>
         <img
           src={movie.backdrop_path ? `${config.imageW500URL}${movie.backdrop_path}` : config.defaultMovieImg}

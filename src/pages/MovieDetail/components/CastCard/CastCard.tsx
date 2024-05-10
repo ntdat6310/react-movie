@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { config } from 'src/constants/config'
 import { Actor } from 'src/types/user.type'
+import { generateNameId } from 'src/utils/helpers'
 interface Props {
   cast: Actor
 }
 export default function CastCard({ cast }: Props) {
+  const nameId = generateNameId({ id: String(cast.id), name: cast.name })
   return (
-    <Link to='#' className='cast relative group'>
+    <Link to={`/cast/${nameId}`} className='cast relative group'>
       <img
         src={cast.profile_path ? `${config.imageW500URL}${cast.profile_path}` : config.defaultCastImg}
         alt='cast_img'

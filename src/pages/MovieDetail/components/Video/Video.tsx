@@ -17,7 +17,6 @@ export default function Video({ videos }: Props) {
               <iframe
                 src={`https://www.youtube.com/embed/${trailer.key}`}
                 title={`${trailer.name}`}
-                frameBorder='0'
                 allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
                 allowFullScreen
               ></iframe>
