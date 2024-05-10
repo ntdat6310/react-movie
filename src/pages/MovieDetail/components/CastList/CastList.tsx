@@ -1,30 +1,29 @@
 /* eslint-disable import/no-unresolved */
+import { Actor } from 'src/types/user.type'
 import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import { Movie } from 'src/types/movie.type'
+import CastCard from '../CastCard'
 import MovieSkeleton from 'src/components/MovieSkeleton'
-import MovieCard from 'src/components/MovieCard'
 
 interface Props {
   title?: string
   titleClassName?: string
-  movies?: Movie[]
+  casts?: Actor[]
   isLoading?: boolean
-  onMovieClicked?: ({ id, name }: { id: string; name: string }) => void
+  onCastClicked?: ({ id, name }: { id: string; name: string }) => void
 }
-export default function MovieList({
+
+export default function CastList({
   title,
-  movies,
+  titleClassName = 'text-2xl text-white font-bold mt-5',
+  casts,
   isLoading,
-  onMovieClicked,
-  titleClassName = 'text-2xl text-white font-bold mt-5'
+  onCastClicked
 }: Props) {
   return (
-    <div className='relative movies-list'>
+    <div className='relative cast-list'>
       {title && <h2 className={titleClassName}>{title}</h2>}
-      {movies && movies.length > 0 && (
+      {casts && casts.length > 0 && (
         <Swiper
           modules={[Navigation]}
           navigation
@@ -59,10 +58,10 @@ export default function MovieList({
                 </SwiperSlide>
               ))}
           {!isLoading &&
-            movies.map((movie) => {
+            casts.map((cast) => {
               return (
-                <SwiperSlide key={movie.id}>
-                  <MovieCard movie={movie} onMovieClicked={onMovieClicked} />
+                <SwiperSlide key={cast.id}>
+                  <CastCard cast={cast} />
                 </SwiperSlide>
               )
             })}

@@ -17,7 +17,7 @@ export type Actor = {
   profile_path: string
 }
 
-export type ActorMovies = {
+export type MoviesOfActor = {
   cast: Movie[]
   id: number
 }

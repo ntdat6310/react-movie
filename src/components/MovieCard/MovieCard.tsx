@@ -6,13 +6,14 @@ import Button from '../Button'
 import IconPlay from '../IconPlay'
 interface Props {
   movie: Movie
+  onMovieClicked?: ({ id, name }: { id: string; name: string }) => void
 }
-export default function MovieCard({ movie }: Props) {
+export default function MovieCard({ movie, onMovieClicked }: Props) {
   return (
     <div className='col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-3 p-3 bg-slate-800 rounded-lg text-white select-none cursor-grab h-full flex flex-col'>
       <div className='w-full h-[250px] overflow-hidden rounded-lg'>
         <img
-          src={`${config.imageW500URL}${movie.backdrop_path}`}
+          src={movie.backdrop_path ? `${config.imageW500URL}${movie.backdrop_path}` : config.defaultMovieImg}
           alt='movie_img'
           className='w-full h-full rounded-lg object-cover'
         />
@@ -29,8 +30,15 @@ export default function MovieCard({ movie }: Props) {
           </div>
           <Button
             title='Watch'
+            onClick={() => {
+              onMovieClicked &&
+                onMovieClicked({
+                  id: String(movie.id),
+                  name: movie.title
+                })
+            }}
             titleClassName='text-sm sm:text-base'
-            className='mt-2 gap-x-1 py-2 sm:px-8 rounded-lg bg-primary justify-center hover:cursor-pointer hover:bg-primary/80'
+            className='mt-2 gap-x-1 py-2 sm:px-8 flex items-center rounded-lg bg-primary justify-center hover:cursor-pointer hover:bg-primary/80 w-full'
             icon={<IconPlay />}
           />
         </div>

@@ -7,9 +7,10 @@ import { getYearFromISOString } from 'src/utils/helpers'
 
 interface Props {
   movie: Movie
+  onMovieClicked?: ({ id, name }: { id: string; name: string }) => void
 }
 
-export default function Banner({ movie }: Props) {
+export default function Banner({ movie, onMovieClicked }: Props) {
   return (
     <section className='banner h-[400px] page-container px-3 sm:px-5 cursor-grab'>
       <div className='w-full h-full rounded-lg relative'>
@@ -31,8 +32,15 @@ export default function Banner({ movie }: Props) {
           </div>
           <Button
             title='Watch'
+            onClick={() =>
+              onMovieClicked &&
+              onMovieClicked({
+                id: String(movie.id),
+                name: movie.title
+              })
+            }
             titleClassName='text-sm sm:text-base'
-            className='gap-x-1 py-2 px-6 sm:px-8 rounded-lg bg-primary self-start hover:cursor-pointer hover:bg-primary/80'
+            className='flex items-center gap-x-1 py-2 px-6 sm:px-8 rounded-lg bg-primary self-start hover:cursor-pointer hover:bg-primary/80'
             icon={<IconPlay />}
           />
         </div>

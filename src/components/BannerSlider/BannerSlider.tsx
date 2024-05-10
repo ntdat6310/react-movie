@@ -8,8 +8,9 @@ import Banner from './components/Banner'
 
 interface Props {
   movies?: Movie[]
+  onMovieClicked?: ({ id, name }: { id: string; name: string }) => void
 }
-export default function BannerSlider({ movies }: Props) {
+export default function BannerSlider({ movies, onMovieClicked }: Props) {
   return (
     <section className='banner h-[400px] page-container px-3 sm:px-5'>
       {movies && (
@@ -27,7 +28,7 @@ export default function BannerSlider({ movies }: Props) {
           {movies.map((movie) => {
             return (
               <SwiperSlide key={movie.id}>
-                <Banner movie={movie} />
+                <Banner movie={movie} onMovieClicked={onMovieClicked} />
               </SwiperSlide>
             )
           })}

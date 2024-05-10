@@ -1,6 +1,8 @@
+import { Actor } from 'src/types/user.type'
 import { Movie, MovieDetail, MovieType } from '../types/movie.type'
-import { Reviews } from '../types/review.type'
 import http from '../utils/http'
+import { SuccessResponse } from 'src/types/response.type'
+import { Review } from 'src/types/review.type'
 
 const URL = '/movie'
 const movieApi = {
@@ -13,11 +15,18 @@ const movieApi = {
   },
 
   getSimilarMovies(movieId: string | number) {
-    return http.get<Movie[]>(`${URL}/${movieId}/similar`)
+    return http.get<SuccessResponse<Movie[]>>(`${URL}/${movieId}/similar`)
   },
 
-  getMovieReviews(movieId: string | number) {
-    return http.get<Reviews>(`${URL}/${movieId}/similar`)
+  getMovieReviews(movieId: string | number, params?: object) {
+    console.log('params', params)
+    return http.get<SuccessResponse<Review[]>>(`${URL}/${movieId}/reviews`, {
+      params
+    })
+  },
+
+  getCastsOfMovie(movieId: string | number) {
+    return http.get<{ cast: Actor[] }>(`${URL}/${movieId}/credits`)
   }
 }
 export default movieApi

@@ -4,8 +4,12 @@ import BannerSlider from 'src/components/BannerSlider/BannerSlider'
 import movieApi from '../../apis/movie.api'
 import MovieList from '../../components/MovieList'
 import { MovieType } from '../../constants/movieType'
+import { useNavigate } from 'react-router-dom'
+import { generateNameId } from 'src/utils/helpers'
 
 export default function Home() {
+  const navigate = useNavigate()
+
   const { data: upcommingMovies, isLoading: isLoadingUpcommingMovies } = useQuery({
     queryKey: ['movies', MovieType.upcoming],
     queryFn: () =>
@@ -38,24 +42,52 @@ export default function Home() {
       })
   })
 
+  const onMovieClicked = ({ id, name }: { id: string; name: string }) => {
+    const nameId = generateNameId({
+      id,
+      name
+    })
+    navigate(`/movie/${nameId}`)
+  }
+
   return (
     <>
-      <BannerSlider movies={nowPlayingMovies?.data.results} />
+      <BannerSlider movies={nowPlayingMovies?.data.results} onMovieClicked={onMovieClicked} />
 
       <section className='page-container px-3 sm:px-5 mt-10'>
-        <MovieList title='Now Playing' movies={nowPlayingMovies?.data.results} isLoading={isLoadingNowPlayingMovies} />
+        <MovieList
+          title='Now Playing'
+          movies={nowPlayingMovies?.data.results}
+          isLoading={isLoadingNowPlayingMovies}
+          onMovieClicked={onMovieClicked}
+        />
       </section>
 
       <section className='page-container px-3 sm:px-5 mt-10'>
-        <MovieList title='Upcomming' movies={upcommingMovies?.data.results} isLoading={isLoadingUpcommingMovies} />
+        <MovieList
+          title='Upcomming'
+          movies={upcommingMovies?.data.results}
+          isLoading={isLoadingUpcommingMovies}
+          onMovieClicked={onMovieClicked}
+        />
       </section>
 
       <section className='page-container px-3 sm:px-5 mt-10'>
-        <MovieList title='Top Rated' movies={topRatedMovies?.data.results} isLoading={isLoadingTopRatedMovies} />
+        <MovieList
+          title='Top Rated'
+          movies={topRatedMovies?.data.results}
+          isLoading={isLoadingTopRatedMovies}
+          onMovieClicked={onMovieClicked}
+        />
       </section>
 
       <section className='page-container px-3 sm:px-5 mt-10'>
-        <MovieList title='Popular' movies={popularMovies?.data.results} isLoading={isLoadingPopularMovies} />
+        <MovieList
+          title='Popular'
+          movies={popularMovies?.data.results}
+          isLoading={isLoadingPopularMovies}
+          onMovieClicked={onMovieClicked}
+        />
       </section>
     </>
   )

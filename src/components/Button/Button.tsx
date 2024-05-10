@@ -1,20 +1,17 @@
-interface Props {
+import { ButtonHTMLAttributes } from 'react'
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode
   className?: string
   title?: string
   titleClassName?: string
 }
 
-export default function Button({
-  title,
-  icon,
-  titleClassName = 'text-sm sm:text-base',
-  className = 'flex items-center'
-}: Props) {
+export default function Button({ title, icon, titleClassName, className, ...rest }: Props) {
   return (
-    <div className={`flex items-center ${className}`}>
-      <button className={titleClassName}>{title}</button>
+    <button className={className} {...rest}>
+      <div className={titleClassName}>{title}</div>
       {icon}
-    </div>
+    </button>
   )
 }
