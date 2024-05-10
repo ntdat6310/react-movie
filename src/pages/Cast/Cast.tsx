@@ -74,7 +74,7 @@ export default function Cast() {
             <div className='flex items-center flex-wrap justify-end gap-x-8 gap-y-2 text-gray-300'>
               <div className='flex items-center gap-2'>
                 <Birthday />
-                <p>{isoToCustomDateFormat(cast.birthday || '')}</p>
+                <p>{isoToCustomDateFormat(cast.birthday || new Date().toISOString())}</p>
               </div>
               <div>{cast.place_of_birth}</div>
             </div>

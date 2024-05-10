@@ -3,6 +3,7 @@ import Home from '../pages/Home'
 import MainLayout from '../layouts/MainLayout/MainLayout'
 import MovieDetail from 'src/pages/MovieDetail'
 import Cast from 'src/pages/Cast'
+import Search from 'src/pages/Search'
 
 export default function useRouteElements() {
   const elements = useRoutes([
@@ -28,6 +29,14 @@ export default function useRouteElements() {
       element: (
         <MainLayout>
           <Cast />
+        </MainLayout>
+      )
+    },
+    {
+      path: '/search',
+      element: (
+        <MainLayout>
+          <Search />
         </MainLayout>
       )
     }

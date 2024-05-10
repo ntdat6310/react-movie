@@ -12,7 +12,7 @@ interface Props {
 }
 
 const FIRST_PAGE = 1
-const CLICKABLE_CSS = 'h-8 w-8 rounded shadow-sm bg-white text-black flex items-center justify-center'
+const CLICKABLE_CSS = 'h-8 w-8 rounded shadow-sm bg-white flex text-black items-center justify-center'
 const UNCLICKABLE_CSS = `${CLICKABLE_CSS} bg-opacity-60 cursor-not-allowed`
 
 export default function Pagination({ totalPages: LAST_PAGE, queryConfig, range = 2, path }: Props) {
@@ -22,7 +22,7 @@ export default function Pagination({ totalPages: LAST_PAGE, queryConfig, range =
   let isHeadDotShowed = false
   let isTailDotShowed = false
   return (
-    <div className='mt-4 flex items-center flex-wrap gap-2 justify-center'>
+    <div className='mt-4 flex items-center flex-wrap gap-2 justify-center text-primary'>
       {/* Previous */}
       {FIRST_PAGE === currentPage ? (
         <span className={UNCLICKABLE_CSS}>

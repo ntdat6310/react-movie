@@ -6,8 +6,12 @@ import { Review } from 'src/types/review.type'
 
 const URL = '/movie'
 const movieApi = {
-  getMovies({ movie_type, params }: { movie_type: MovieType; params?: string }) {
-    return http.get<{ results: Movie[] }>(`${URL}/${movie_type}`, { params: params })
+  getMovies({ movie_type, page }: { movie_type: MovieType; page?: string | number }) {
+    return http.get<SuccessResponse<Movie[]>>(`${URL}/${movie_type}`, {
+      params: {
+        page: page || 1
+      }
+    })
   },
 
   getMovieDetail(movieId: string | number) {
