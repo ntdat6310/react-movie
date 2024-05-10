@@ -13,7 +13,7 @@ import Name from './components/Name'
 const MOVIES_PER_PAGE = 20
 export default function Cast() {
   const searchParams = useQueryParams()
-  const page = searchParams.page || 1
+  let page = searchParams.page || 1
 
   const params = useParams()
   const castId = getIdFromNameId(params.id ?? '')
@@ -37,14 +37,12 @@ export default function Cast() {
   const cast = castData?.data
   const movies = moviesData?.data.cast
   const totalPages = Math.ceil(Number(movies?.length) / MOVIES_PER_PAGE) || 1
+  page = totalPages >= Number(page) ? page : 1
 
   const onMovieClicked = ({ id, name }: { id: string; name: string }) => {
     const nameId = generateNameId({ id, name })
     navigate(`/movie/${nameId}`)
   }
-
-  console.log(movies)
-  console.log('totalPages', totalPages)
 
   return (
     cast && (
