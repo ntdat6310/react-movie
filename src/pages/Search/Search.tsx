@@ -93,7 +93,7 @@ export default function Search() {
   const totalPages = movieListData?.data.total_pages || moviesData?.data.total_pages || castsData?.data.total_pages
   const isLoading = isMovieListLoading || isMovieLoading || isCastLoading
 
-  const isNoResultFound = !isLoading && ((movies && movies.length === 0) || (casts && casts.length === 0))
+  const isNoResultFound = !isLoading && (movies?.length == 0 || casts?.length == 0)
   return (
     <div className='page-container'>
       <form className='w-[90%] sm:w-[80%] mx-auto' onSubmit={onSubmit}>
@@ -221,7 +221,9 @@ export default function Search() {
           </div>
         )}
       </div>
-      {!isNoResultFound && <Pagination path={path.search} totalPages={totalPages || 1} queryConfig={params} />}
+      {!isLoading && !isNoResultFound && (
+        <Pagination path={path.search} totalPages={totalPages || 1} queryConfig={params} />
+      )}
     </div>
   )
 }
