@@ -6,6 +6,7 @@ import MovieList from '../../components/MovieList'
 import { MovieType } from '../../constants/movieType'
 import { useNavigate } from 'react-router-dom'
 import { generateNameId } from 'src/utils/helpers'
+import { path } from 'src/constants/path'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -47,7 +48,7 @@ export default function Home() {
       id,
       name
     })
-    navigate(`/movie/${nameId}`)
+    navigate(`${path.movie}/${nameId}`)
   }
 
   return (
@@ -81,7 +82,7 @@ export default function Home() {
         />
       </section>
 
-      <section className='page-container px-3 sm:px-5 mt-10'>
+      <section className='page-container px-3 sm:px-5 my-10'>
         <MovieList
           title='Popular'
           movies={popularMovies?.data.results}

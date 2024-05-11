@@ -1,9 +1,8 @@
-import http from '../utils/http'
-import { Movie, MovieType } from '../types/movie.type'
-import { Keyword } from '../types/keyword.type'
-import { Actor } from 'src/types/user.type'
-import movieApi from './movie.api'
 import { SuccessResponse } from 'src/types/response.type'
+import { Actor } from 'src/types/user.type'
+import { Movie, MovieType } from '../types/movie.type'
+import http from '../utils/http'
+import movieApi from './movie.api'
 
 const URL = '/search'
 export const searchApi = {

@@ -23,7 +23,7 @@ export default function MovieList({
 }: Props) {
   return (
     <div className='relative movies-list'>
-      {title && <h2 className={titleClassName}>{title}</h2>}
+      {movies && movies.length > 0 && title && <h2 className={titleClassName}>{title}</h2>}
       {movies && movies.length > 0 && (
         <Swiper
           modules={[Navigation]}

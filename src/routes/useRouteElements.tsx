@@ -4,6 +4,7 @@ import MainLayout from '../layouts/MainLayout/MainLayout'
 import MovieDetail from 'src/pages/MovieDetail'
 import Cast from 'src/pages/Cast'
 import Search from 'src/pages/Search'
+import NotFound from 'src/pages/NotFound'
 
 export default function useRouteElements() {
   const elements = useRoutes([
@@ -39,6 +40,10 @@ export default function useRouteElements() {
           <Search />
         </MainLayout>
       )
+    },
+    {
+      path: '/*',
+      element: <NotFound />
     }
   ])
   return elements

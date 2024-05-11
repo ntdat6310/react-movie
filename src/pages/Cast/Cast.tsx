@@ -9,6 +9,8 @@ import useQueryParams from 'src/hooks/useQueryParams'
 import { generateNameId, getIdFromNameId, isoToCustomDateFormat } from 'src/utils/helpers'
 import Birthday from './components/Birthday'
 import Name from './components/Name'
+import { path } from 'src/constants/path'
+import Spinner from 'src/components/Spinner'
 
 const MOVIES_PER_PAGE = 20
 export default function Cast() {
@@ -20,7 +22,7 @@ export default function Cast() {
 
   const navigate = useNavigate()
 
-  const { data: castData } = useQuery({
+  const { data: castData, isLoading } = useQuery({
     queryKey: ['cast', castId],
     queryFn: () => actorApi.getActorDetail({ actorId: castId })
   })
@@ -41,10 +43,14 @@ export default function Cast() {
 
   const onMovieClicked = ({ id, name }: { id: string; name: string }) => {
     const nameId = generateNameId({ id, name })
-    navigate(`/movie/${nameId}`)
+    navigate(`${path.movie}/${nameId}`)
   }
 
-  return (
+  return isLoading ? (
+    <div className='mt-10'>
+      <Spinner />
+    </div>
+  ) : (
     cast && (
       <div className='w-full mb-10 text-white'>
         {/* Banner */}

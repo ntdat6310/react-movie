@@ -95,7 +95,7 @@ export default function Search() {
 
   const isNoResultFound = !isLoading && (movies?.length == 0 || casts?.length == 0)
   return (
-    <div className='page-container'>
+    <div className='page-container mb-10'>
       <form className='w-[90%] sm:w-[80%] mx-auto' onSubmit={onSubmit}>
         <div className='flex items-center'>
           <select
@@ -222,7 +222,9 @@ export default function Search() {
         )}
       </div>
       {!isLoading && !isNoResultFound && (
-        <Pagination path={path.search} totalPages={totalPages || 1} queryConfig={params} />
+        <div className='mt-6'>
+          <Pagination path={path.search} totalPages={totalPages || 1} queryConfig={params} />
+        </div>
       )}
     </div>
   )

@@ -5,6 +5,7 @@ import movieApi from 'src/apis/movie.api'
 import IconStar from 'src/components/IconStar'
 import MovieList from 'src/components/MovieList'
 import Pagination from 'src/components/Pagination/Pagination'
+import Spinner from 'src/components/Spinner'
 import { config } from 'src/constants/config'
 import useQueryParams from 'src/hooks/useQueryParams'
 import { QueryConfig } from 'src/types/query.type'
@@ -23,24 +24,24 @@ export default function MovieDetail() {
 
   const navigate = useNavigate()
 
-  const { data: movieData } = useQuery({
+  const { data: movieData, isLoading: isMovieLoading } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => movieApi.getMovieDetail(movieId)
   })
-  const { data: castsData } = useQuery({
+  const { data: castsData, isLoading: isCastLoading } = useQuery({
     queryKey: ['casts', movieId],
     queryFn: () => movieApi.getCastsOfMovie(movieId)
   })
-  const { data: similarMovieData } = useQuery({
+  const { data: similarMovieData, isLoading: isSimilarMovieLoading } = useQuery({
     queryKey: ['movies', movieId],
     queryFn: () => movieApi.getSimilarMovies(movieId)
   })
-  const { data: movieReviewsData } = useQuery({
+  const { data: movieReviewsData, isLoading: isMovieReviewLoading } = useQuery({
     queryKey: ['reviews', movieId, page],
     queryFn: () => movieApi.getMovieReviews(movieId, { page })
   })
 
-  const { data: videosData } = useQuery({
+  const { data: videosData, isLoading: isVideoLoading } = useQuery({
     queryKey: ['videos', movieId],
     queryFn: () => movieApi.getMovieVideos(movieId)
   })
@@ -55,10 +56,13 @@ export default function MovieDetail() {
   const similarMovies = similarMovieData?.data.results
   const reviews = movieReviewsData?.data
   const videos = videosData?.data.results
+  const isLoading = isMovieLoading || isCastLoading || isSimilarMovieLoading || isMovieReviewLoading || isVideoLoading
 
-  console.log(videos)
-
-  return (
+  return isLoading ? (
+    <div className='mt-10'>
+      <Spinner />
+    </div>
+  ) : (
     <div className='w-full mb-10 text-white'>
       {/* Banner */}
       <div className='relative mb-[250px]'>

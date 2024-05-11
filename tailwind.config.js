@@ -10,6 +10,5 @@ export default {
         primary: '#F62682'
       }
     }
-  },
-  plugins: [require('@tailwindcss/line-clamp')]
+  }
 }

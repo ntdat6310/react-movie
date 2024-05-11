@@ -12,10 +12,12 @@ interface Props {
 }
 
 const FIRST_PAGE = 1
-const CLICKABLE_CSS = 'h-8 w-8 rounded shadow-sm bg-white flex text-black items-center justify-center'
+const MAX_PAGE = 500
+const CLICKABLE_CSS = 'h-8 min-w-8 px-2 rounded shadow-sm bg-white flex text-black items-center justify-center'
 const UNCLICKABLE_CSS = `${CLICKABLE_CSS} bg-opacity-60 cursor-not-allowed`
 
-export default function Pagination({ totalPages: LAST_PAGE, queryConfig, range = 2, path }: Props) {
+export default function Pagination({ totalPages, queryConfig, range = 2, path }: Props) {
+  const LAST_PAGE = totalPages <= MAX_PAGE ? totalPages : MAX_PAGE
   const currentPage = Number(queryConfig.page) || 1
   const firstRange = Math.max(currentPage - range, 1)
   const lastRange = Math.min(currentPage + range, LAST_PAGE)
